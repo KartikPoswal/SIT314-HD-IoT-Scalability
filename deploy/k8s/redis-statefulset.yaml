@@ -1,0 +1,15 @@
+﻿apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-state
+spec:
+  serviceName: redis-state
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        args: ["--appendonly", "yes"]
+        ports:
+        - containerPort: 6379
